@@ -205,10 +205,10 @@ class BaseFeed
      * @param  string $feed
      * @return mixed
      */
-    public function followFeed($target_feed_slug, $target_user_id)
+    public function followFeed($target_feed_slug, $target_user_id, $options = [])
     {
         $target_feed_id = "$target_feed_slug:$target_user_id";
-        $data = ['target' => $target_feed_id];
+        $data = ['target' => $target_feed_id] + $options;
         if (null !== $this->client) {
             $target_feed = $this->client->feed($target_feed_slug, $target_user_id);
             $data['target_token'] = $target_feed->getToken();
